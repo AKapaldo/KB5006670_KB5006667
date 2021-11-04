@@ -18,28 +18,39 @@ $repairFile = "" #Add file path to known good files here.
 
 # Repair if system has KB5006667
 If (Get-HotFix -ID KB5006667 -ErrorAction SilentlyContinue) {
-write-Host "Windows Hotfix KB5006667 was found on this system..."
+    write-Host "Windows Hotfix KB5006667 was found on this system..."
 
-Write-Host "Stopping Spooler service..."
-Stop-Service -Name Spooler
+    Write-Host "Stopping Spooler service..."
+    Stop-Service -Name Spooler
 
-Write-Host "Creating new folder..."
-New-Item -Path $spoolerPath -Name "_PrintSpooler" -Type Directory | Out-Null
+    Write-Host "Creating new folder..."
+    New-Item -Path $spoolerPath -Name "_PrintSpooler" -Type Directory | Out-Null
 
-Write-Host "Copying old files as backup..."
-Copy-Item -Path "C:\Windows\System32\localspl.dll" -Destination $spoolerNew
-Copy-Item -Path "C:\Windows\System32\spoolsv.exe" -Destination $spoolerNew
-Copy-Item -Path "C:\Windows\System32\win32spl.dll" -Destination $spoolerNew
+    Write-Host "Copying old files as backup..."
+    Copy-Item -Path "C:\Windows\System32\localspl.dll" -Destination $spoolerNew
+    Copy-Item -Path "C:\Windows\System32\spoolsv.exe" -Destination $spoolerNew
+    Copy-Item -Path "C:\Windows\System32\win32spl.dll" -Destination $spoolerNew
 
-Write-Host "Copying replacement files..."
-Copy-Item -Path "$repairFile/localspl.dll" -Destination $spoolerPath -Force
-Copy-Item -Path "$repairFile/spoolsv.exe" -Destination $spoolerPath -Force
-Copy-Item -Path "$repairFile/win32spl.dll" -Destination $spoolerPath -Force
+    Write-Host "Copying replacement files..."
+    Copy-Item -Path "$repairFile/localspl.dll" -Destination $spoolerPath -Force
+    Copy-Item -Path "$repairFile/spoolsv.exe" -Destination $spoolerPath -Force
+    Copy-Item -Path "$repairFile/win32spl.dll" -Destination $spoolerPath -Force
 
-Write-Host "Restarting Spooler service..."
-Start-Service -Name Spooler
+    Write-Host "Restarting Spooler service..."
+    Start-Service -Name Spooler
 
-Write-Host "Print fix complete!"
+    $vlocal = (Get-Item "C:\Windows\System32\localspl.dll").VersionInfo.ProductVersion
+    $vspool = (Get-Item "C:\Windows\System32\spoolsv.exe").VersionInfo.ProductVersion
+    $vwin = (Get-Item "C:\Windows\System32\win32spl.dll").VersionInfo.ProductVersion
+
+    if ($vlocal -eq "" -and $vspool -eq "" -and $vwin -eq ""){
+        Write-Host "Print fix complete!"
+    }
+    else {
+        Write-Warning "Files not copied."
+    }
+
+
 }
 
 # System doesn't have 
