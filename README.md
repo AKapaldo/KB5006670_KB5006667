@@ -29,8 +29,8 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/AKapaldo/KB506670_KB5006667">
-    <img src="images/printer.png" height="250px" alt="Logo">
+  <a href="https://github.com/AKapaldo/KB5006670_KB5006667">
+    <img src="images/printer.png" alt="Logo">
   </a>
 
 <h3 align="center">Printer Fix for KB506670 and KB5006667</h3>
@@ -38,14 +38,14 @@
   <p align="center">
     This script adds registry entires (or removes them) for a fix for networked printers after installing KB506670 or KB5006667.
     <br />
-    <a href="https://github.com/AKapaldo/KB506670_KB5006667"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/AKapaldo/KB5006670_KB5006667"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/AKapaldo/KB506670_KB5006667">View Demo</a>
+    <a href="https://github.com/AKapaldo/KB5006670_KB5006667">View Demo</a>
     ·
-    <a href="https://github.com/AKapaldo/KB506670_KB5006667/issues">Report Bug</a>
+    <a href="https://github.com/AKapaldo/KB5006670_KB5006667/issues">Report Bug</a>
     ·
-    <a href="https://github.com/AKapaldo/KB506670_KB5006667/issues">Request Feature</a>
+    <a href="https://github.com/AKapaldo/KB5006670_KB5006667/issues">Request Feature</a>
   </p>
 </div>
 
@@ -80,7 +80,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Print Fix Screen Shot][PrintFix-screenshot]](https://github.com/AKapaldo/KB506670_KB5006667/blob/main/PrintFix.ps1)
+[![Print Fix Screen Shot][PrintFix-screenshot]](https://github.com/AKapaldo/KB5006670_KB5006667/blob/main/PrintFix.ps1)
 
 Print Fix repairs issues with printing and connecting to network printers after installing KB5006667 or KB506670. Connecting to printers gives the error 0x0000007c. More info about the issue and the fix can be found <a href="https://www.bleepingcomputer.com/news/microsoft/how-to-fix-the-windows-0x0000007c-network-printing-error/">here at Bleeping Computer</a>
 
@@ -113,7 +113,7 @@ Some tools require Python. To install:
 
 1a. Clone the repo
    ```sh
-   git clone https://github.com/AKapaldo/KB506670_KB5006667.git
+   git clone https://github.com/AKapaldo/KB5006670_KB5006667.git
    ```
 1b. Or Copy the code and save locally.
  
@@ -141,7 +141,7 @@ Printer Fix
     - v1.1: Cleaned up code, spelling errors, and error catching
 
 
-See the [open issues](https://github.com/AKapaldo/KB506670_KB5006667/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/AKapaldo/KB5006670_KB5006667/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -179,7 +179,7 @@ Distributed under the GNU General Public License. See `LICENSE` for more informa
 
 Andrew Kapaldo - [@KapaldoA](https://twitter.com/kapaldoa)
 
-Project Link: [https://github.com/AKapaldo/KB506670_KB5006667](https://github.com/AKapaldo/KB506670_KB5006667)
+Project Link: [https://github.com/AKapaldo/KB5006670_KB5006667](https://github.com/AKapaldo/KB5006670_KB5006667)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -197,16 +197,16 @@ Project Link: [https://github.com/AKapaldo/KB506670_KB5006667](https://github.co
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/AKapaldo/KB506670_KB5006667.svg?style=for-the-badge
-[contributors-url]: https://github.com/AKapaldo/KB506670_KB5006667/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/AKapaldo/KB506670_KB5006667.svg?style=for-the-badge
-[forks-url]: https://github.com/AKapaldo/KB506670_KB5006667/network/members
-[stars-shield]: https://img.shields.io/github/stars/AKapaldo/KB506670_KB5006667.svg?style=for-the-badge
-[stars-url]: https://github.com/AKapaldo/KB506670_KB5006667/stargazers
-[issues-shield]: https://img.shields.io/github/issues/AKapaldo/KB506670_KB5006667.svg?style=for-the-badge
-[issues-url]: https://github.com/AKapaldo/KB506670_KB5006667/issues
-[license-shield]: https://img.shields.io/github/license/AKapaldo/KB506670_KB5006667.svg?style=for-the-badge
-[license-url]: https://github.com/AKapaldo/KB506670_KB5006667/blob/master/LICENSE
+[contributors-shield]: https://img.shields.io/github/contributors/AKapaldo/KB5006670_KB5006667.svg?style=for-the-badge
+[contributors-url]: https://github.com/AKapaldo/KB5006670_KB5006667/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/AKapaldo/KB5006670_KB5006667.svg?style=for-the-badge
+[forks-url]: https://github.com/AKapaldo/KB5006670_KB5006667/network/members
+[stars-shield]: https://img.shields.io/github/stars/AKapaldo/KB5006670_KB5006667.svg?style=for-the-badge
+[stars-url]: https://github.com/AKapaldo/KB5006670_KB5006667/stargazers
+[issues-shield]: https://img.shields.io/github/issues/AKapaldo/KB5006670_KB5006667.svg?style=for-the-badge
+[issues-url]: https://github.com/AKapaldo/KB5006670_KB5006667/issues
+[license-shield]: https://img.shields.io/github/license/AKapaldo/KB5006670_KB5006667.svg?style=for-the-badge
+[license-url]: https://github.com/AKapaldo/KB5006670_KB5006667/blob/master/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/andrew-kapaldo
 [PrintFix-screenshot]: images/PrintFix.png
