@@ -6,7 +6,7 @@ Used to add or remove registry values to fix printing issues on Windows 10 machi
 .Notes
 Must be run as admin.
 Author: Andrew Kapaldo
-Version: 1.1
+Version: 1.10
 #>
 
 # Set Variables
