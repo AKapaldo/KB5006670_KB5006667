@@ -1,62 +1,80 @@
 <#
 .Synopsis
-Repair print issues caused by Windows Hotfix KB5006667
+Used to add or remove registry values to fix printing issues on Windows 10 machines after installing KB5006667 or KB5006670.
 .Description
-Uses a set of good spooler files from a pre-KB5006667 machine to repair the spooler service.
+Used to add or remove registry values to fix printing issues on Windows 10 machines after installing KB5006667 or KB5006670.
 .Notes
-You will need to source a LocalSpl.dll, SpoolSv.exe, and Win32Spl.dll file from a pre-KB5006667 patch machine or remove KB5006667 and then copy the files.
-
+Must be run as admin.
 Author: Andrew Kapaldo
-Date: November 3, 2021
-Version: 1.0
+Version: 1.1
 #>
 
 # Set Variables
-$spoolerPath = "C:\Windows\System32\"
-$spoolerNew = Join-Path -Path $spoolerPath -ChildPath "_PrintSpooler\"
-$repairFile = "" #Add file path to known good files here.
+$overrides = 'HKLM:\SYSTEM\CurrentControlSet\Policies\Microsoft\FeatureManagement\Overrides'
+$path = Test-Path -Path $overrides
+$Win10Ver = (Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion').DisplayVersion
 
-# Repair if system has KB5006667
-If (Get-HotFix -ID KB5006667 -ErrorAction SilentlyContinue) {
-    write-Host "Windows Hotfix KB5006667 was found on this system..."
+$install = Read-Host "1. Add Registry Entry`n2. Remove Registry Entry`nEnter a number"
 
-    Write-Host "Stopping Spooler service..."
-    Stop-Service -Name Spooler
-
-    Write-Host "Creating new folder..."
-    New-Item -Path $spoolerPath -Name "_PrintSpooler" -Type Directory | Out-Null
-
-    Write-Host "Copying old files as backup..."
-    Copy-Item -Path "C:\Windows\System32\localspl.dll" -Destination $spoolerNew
-    Copy-Item -Path "C:\Windows\System32\spoolsv.exe" -Destination $spoolerNew
-    Copy-Item -Path "C:\Windows\System32\win32spl.dll" -Destination $spoolerNew
-
-    Write-Host "Copying replacement files..."
-    Copy-Item -Path "$repairFile/localspl.dll" -Destination $spoolerPath -Force
-    Copy-Item -Path "$repairFile/spoolsv.exe" -Destination $spoolerPath -Force
-    Copy-Item -Path "$repairFile/win32spl.dll" -Destination $spoolerPath -Force
-
-    Write-Host "Restarting Spooler service..."
-    Start-Service -Name Spooler
-
-    $vlocal = (Get-Item "C:\Windows\System32\localspl.dll").VersionInfo.ProductVersion
-    $vspool = (Get-Item "C:\Windows\System32\spoolsv.exe").VersionInfo.ProductVersion
-    $vwin = (Get-Item "C:\Windows\System32\win32spl.dll").VersionInfo.ProductVersion
-
-    if ($vlocal -eq "" -and $vspool -eq "" -and $vwin -eq ""){
-        Write-Host "Print fix complete!"
+# Add Registry Entries
+if ($install -eq "1"){
+    if ($Win10Ver -eq "2004" -or $Win10Ver -eq "20H2" -or $Win10Ver -eq "21H1" -or $Win10Ver -eq "21H2"){
+        if ($path -eq $True){
+            New-ItemProperty -Path $overrides -Name '713073804' -Value 0
+        }
+        else{
+            New-Item -Path $overrides -Force
+            New-ItemProperty -Path $overrides -Name '713073804' -Value 0
+        }
+    }
+    elseif ($Win10Ver -eq "1909") {
+        if ($path -eq $True){
+            New-ItemProperty -Path $overrides -Name '1921033356' -Value 0
+        }
+        else{
+            New-Item -Path $overrides -Force
+            New-ItemProperty -Path $overrides -Name '1921033356' -Value 0
+        }
+    }
+    elseif ($Win10Ver -eq "1809"){
+        if ($path -eq $True){
+            New-ItemProperty -Path $overrides -Name '3598754956' -Value 0
+        }
+        else{
+            New-Item -Path $overrides -Force
+            New-ItemProperty -Path $overrides -Name '3598754956' -Value 0
+        }
     }
     else {
-        Write-Warning "Files not copied."
+        Write-Warning "Windows version not supported by this fix."
     }
 
-
+    # Force Feature Reconcile
+    Get-ScheduledTask -TaskName "ReconcileFeatures" | Start-ScheduledTask
+    Write-Warning "PC must be restarted to apply changes!"
 }
 
-# System doesn't have 
-Else{
-Write-Warning "Hotfix KB5006667 Not found."
+# Remove Registry Entries
+elseif ($install -eq "2"){
+    $1809 = (Get-ItemProperty 'HKLM:\SYSTEM\CurrentControlSet\Policies\Microsoft\FeatureManagement\Overrides').3598754956
+    $1909 = (Get-ItemProperty 'HKLM:\SYSTEM\CurrentControlSet\Policies\Microsoft\FeatureManagement\Overrides').1921033356
+    $2004 = (Get-ItemProperty 'HKLM:\SYSTEM\CurrentControlSet\Policies\Microsoft\FeatureManagement\Overrides').713073804
+
+    if ($1809 -ne $null){
+        Remove-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Policies\Microsoft\FeatureManagement\Overrides' -Name '3598754956'
+    }
+    if ($1909 -ne $null){
+        Remove-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Policies\Microsoft\FeatureManagement\Overrides' -Name '1921033356'
+    }
+    if ($2004 -ne $null){
+        Remove-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Policies\Microsoft\FeatureManagement\Overrides' -Name '713073804'
+    }
+    
 }
 
-Start-Sleep -Seconds 10
-Stop-Process -ID $PID
+else{
+    Write-Warning "Invalid input. Enter 1 for adding entries or 2 to remove them."
+}
+
+Start-Sleep -Seconds 15
+Stop-Process -Id $PID
