@@ -30,7 +30,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/AKapaldo/KB5006670_KB5006667">
-    <img src="images/printer.png" alt="Logo">
+    <img src="images/printer.png" height="250px" alt="Logo">
   </a>
 
 <h3 align="center">Printer Fix for KB506670 and KB5006667</h3>
