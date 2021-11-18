@@ -36,7 +36,7 @@
 <h3 align="center">Printer Fix for KB506670 and KB5006667</h3>
 
   <p align="center">
-    This script adds registry entires (or removes them) for a fix for networked printers after installing KB506670 or KB5006667.
+    This script adds registry entires (or removes them) as a fix for networked printers after installing KB506670 or KB5006667.
     <br />
     <a href="https://github.com/AKapaldo/KB5006670_KB5006667"><strong>Explore the docs »</strong></a>
     <br />
