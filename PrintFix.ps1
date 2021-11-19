@@ -60,13 +60,13 @@ elseif ($install -eq "2"){
     $1909 = (Get-ItemProperty 'HKLM:\SYSTEM\CurrentControlSet\Policies\Microsoft\FeatureManagement\Overrides').1921033356
     $2004 = (Get-ItemProperty 'HKLM:\SYSTEM\CurrentControlSet\Policies\Microsoft\FeatureManagement\Overrides').713073804
 
-    if ($1809 -ne $null){
+    if ($1809){
         Remove-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Policies\Microsoft\FeatureManagement\Overrides' -Name '3598754956'
     }
-    if ($1909 -ne $null){
+    if ($1909){
         Remove-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Policies\Microsoft\FeatureManagement\Overrides' -Name '1921033356'
     }
-    if ($2004 -ne $null){
+    if ($2004){
         Remove-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Policies\Microsoft\FeatureManagement\Overrides' -Name '713073804'
     }
     
