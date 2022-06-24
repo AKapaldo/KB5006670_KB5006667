@@ -105,7 +105,6 @@ The script can be copied using the "Raw" button to be placed in a local file or 
 
 ### Prerequisites
 
-Some tools require Python. To install:
 * Nothing additional needed for Windows machines.
 
 ### Installation
